@@ -1,0 +1,25 @@
+{
+    "type": "FeatureCollection",
+    "features": [{
+            "type": "Feature",
+            "properties": { "PROVEEDOR": "STARBUCKS", "OFERTA": "2X1", "TIPO": "CAFÉ", "SUCURSAL": "SUC1", "VIGENCIA": "08/06/2020" },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-99.2237806,,
+                    19.3763709
+                ]
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": { "PROVEEDOR": "VIPS", "OFERTA": "2X1", "TIPO": "DESAYUNO", "SUCURSAL": "SUC1", "VIGENCIA": "08/06/2020" },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [-99.2237806,
+                    19.3763709
+                ]
+            }
+        }
+
+    ]
+}
