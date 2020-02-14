@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { OfertagralService } from '../../services/ofertagral.service';
+import { OfertaGeneral } from 'src/app/models/ofertagral.model';
+
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +9,11 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  ofertasGenerales: OfertaGeneral[] = [];
+  constructor(private ofertagralService: OfertagralService) {}
 
-  constructor() {}
+  ngOnInit() {
+    this.ofertasGenerales = this.ofertagralService.getOfertasGenerales();
+  }
 
 }

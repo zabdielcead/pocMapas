@@ -1,9 +1,32 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>
+            Ofertas
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+
+    <ion-card *ngFor="let oferta of ofertasGenerales; let i=index">
+        <ion-card-header>
+            <ion-card-title>{{oferta.titulo}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <img [src]="oferta.img" class="img_circle" alt="{{i}}">
+            <ion-item>
+                <ion-label class="ion-text-center">
+                    {{oferta.descripcion}}
+                </ion-label>
+            </ion-item>
+        </ion-card-content>
+        <ion-footer>
+            <ion-row>
+                <ion-col class="ion-text-center">
+                    Teléfono: {{oferta.telefono}}
+                </ion-col>
+            </ion-row>
+        </ion-footer>
+    </ion-card>
+
+</ion-content>

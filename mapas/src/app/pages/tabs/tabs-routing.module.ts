@@ -14,7 +14,13 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+          },
+          {
+            path: 'tabOferta',
+            loadChildren: () =>
+              import('../tab2/tab2.module').then(m => m.Tab2PageModule)
           }
+
         ]
       },
       {
