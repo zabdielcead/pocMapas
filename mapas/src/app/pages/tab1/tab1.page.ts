@@ -9,7 +9,6 @@ declare var mapboxgl: any;  // porque ya existe en los scripts en index html
 export class Tab1Page  implements OnInit {
   lat: number;
   lng: number;
-  map: any;
   dataDos: any = {
     'type': 'FeatureCollection',
     'features': [{
@@ -110,7 +109,7 @@ jsonObject :any =  JSON.stringify(this.dataDos);
   cargaMapa() {
 
     mapboxgl.accessToken = 'pk.eyJ1IjoiemFiZGllbGNlYWQiLCJhIjoiY2p6Yms3ZnJtMDBiaDNmcXNnYTZobGkyMiJ9.e6lr4n-fXyxnR3ndc8l17w';
-    this.map = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
         style: 'mapbox://styles/mapbox/light-v10',
         center: [this.lng, this.lat],
         zoom: 15.5,
@@ -120,11 +119,11 @@ jsonObject :any =  JSON.stringify(this.dataDos);
         antialias: true
       });
 
-    this.map.on('load', () => {
-        this.map.resize();
+    map.on('load', () => {
+        map.resize();
         // Insert the layer beneath any symbol layer.
-        const layers = this.map.getStyle().layers;
-        new mapboxgl.Marker().setLngLat([this.lng, this.lat]).addTo(this.map);
+        const layers = map.getStyle().layers;
+        new mapboxgl.Marker().setLngLat([this.lng, this.lat]).addTo(map);
         console.log('latitude', this.lat);
         console.log('lng', this.lng);
 
@@ -139,7 +138,7 @@ jsonObject :any =  JSON.stringify(this.dataDos);
 
 
 
-        this.map.addSource('pointsSource', {
+        map.addSource('pointsSource', {
           'type': 'geojson',
           // 'tiles': [ 'URL'],
           'data':  {
@@ -176,7 +175,7 @@ jsonObject :any =  JSON.stringify(this.dataDos);
           // 'tileSize': 200
         });
 
-        this.map.addLayer({
+        map.addLayer({
           id: 'points',
           type: 'circle',
           source: 'pointsSource',
@@ -189,7 +188,7 @@ jsonObject :any =  JSON.stringify(this.dataDos);
         
         
 
-        this.map.on('click', 'points', function(e) {
+        map.on('click', 'points', function(e) {
           var coordinates = e.features[0].geometry.coordinates.slice();
           var description = e.features[0].properties.description;
           console.log('punto', description);
@@ -204,21 +203,21 @@ jsonObject :any =  JSON.stringify(this.dataDos);
           new mapboxgl.Popup()
               .setLngLat(coordinates)
               .setHTML(description)
-              .addTo(this.map);
+              .addTo(map);
           });
            
           // Change the cursor to a pointer when the mouse is over the places layer.
-        this.map.on('mouseenter', 'points', function() {
-            this.map.getCanvas().style.cursor = 'pointer';
+        map.on('mouseenter', 'points', function() {
+            map.getCanvas().style.cursor = 'pointer';
           });
            
           // Change it back to a pointer when it leaves.
-        this.map.on('mouseleave', 'points', function() {
-            this.map.getCanvas().style.cursor = '';
+        map.on('mouseleave', 'points', function() {
+            map.getCanvas().style.cursor = '';
           });
 
         setInterval(( ) => {
-            this.map.getSource('pointsSource').setData(this.clickoferta());
+            map.getSource('pointsSource').setData(this.clickoferta());
            // window.location.reload();
           }, 2000);
         

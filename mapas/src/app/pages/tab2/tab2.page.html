@@ -8,13 +8,13 @@
 
 <ion-content>
 
-    <ion-card *ngFor="let oferta of ofertasGenerales; let i=index">
+    <ion-card *ngFor="let oferta of ofertasGenerales; let i=index" class="fondoGris">
         <ion-card-header>
             <ion-card-title>{{oferta.titulo}}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
             <img [src]="oferta.img" class="img_circle" alt="{{i}}">
-            <ion-item>
+            <ion-item color="colorin">
                 <ion-label class="ion-text-center">
                     {{oferta.descripcion}}
                 </ion-label>
