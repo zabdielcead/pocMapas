@@ -55,7 +55,7 @@ jsonObject :any =  JSON.stringify(this.dataDos);
   }
 
   createCoorRandom() {
-    var r = 100/111300 // = 100 meters
+    var r = 300/111300 // = 100 meters
   , y0 = this.lat
   , x0 = this.lng
   , u = Math.random()
@@ -78,7 +78,7 @@ jsonObject :any =  JSON.stringify(this.dataDos);
     'features': [{
             'type': 'Feature',
             'properties': { 
-              'description': 'id1<strong>PENI</strong><p><a href="http://www.mtpleasantdc.com/makeitmtpleasant" target="_blank" title="Opens in a new window">2X1 Café</a> Cualquier café 2x1 - Vigencia: 21-12-2021 6:00 p.m.</p>',
+              'description': 'id1<strong>Cafetería</strong><p> Cualquier café 2x1 - Vigencia: 21-12-2021 6:00 p.m.</p>',
               'icon': 'theatre'
       
              },
@@ -92,7 +92,7 @@ jsonObject :any =  JSON.stringify(this.dataDos);
             'type': 'Feature',
             // 'properties': { 'PROVEEDOR': 'VIPS', 'OFERTA': '2X1', 'TIPO': 'DESAYUNO', 'SUCURSAL': 'SUC1', 'VIGENCIA': '08/06/2020' },  titulo descripcion telefono
             'properties': { 
-              'description': 'id2<strong>VAKITA</strong><p><a (click)="clickoferta()" >2X1 Café</a> Cualquier café 2x1 - Vigencia: 21-12-2021 6:00 p.m.</p> <ion-button (click)="clickoferta()">Default</ion-button>',                     
+              'description': 'id2<strong>Renta Departamento</strong><p> $5000.00 mensuales </p>',
               'icon': 'theatre'
              },
             'geometry': {
@@ -146,7 +146,7 @@ jsonObject :any =  JSON.stringify(this.dataDos);
             'features': [{
                     'type': 'Feature',
                     'properties': { 
-                      'description': 'id1<strong>Starbucks</strong><p><a href="http://www.mtpleasantdc.com/makeitmtpleasant" target="_blank" title="Opens in a new window">2X1 Café</a> Cualquier café 2x1 - Vigencia: 21-12-2021 6:00 p.m.</p>',
+                      'description': 'id1<strong>Cafetería</strong><p> Cualquier café 2x1 - Vigencia: 21-12-2021 6:00 p.m.</p>',
                       'icon': 'theatre'
               
                      },
@@ -160,7 +160,7 @@ jsonObject :any =  JSON.stringify(this.dataDos);
                     'type': 'Feature',
                     // 'properties': { 'PROVEEDOR': 'VIPS', 'OFERTA': '2X1', 'TIPO': 'DESAYUNO', 'SUCURSAL': 'SUC1', 'VIGENCIA': '08/06/2020' },  titulo descripcion telefono
                     'properties': { 
-                      'description': 'id2<strong>VIPS</strong><p><a (click)="clickoferta()" >2X1 Café</a> Cualquier café 2x1 - Vigencia: 21-12-2021 6:00 p.m.</p> <ion-button (click)="clickoferta()">Default</ion-button>',                     
+                      'description': 'id2<strong>Renta Departamento</strong><p> $5000.00 mensuales </p>',
                       'icon': 'theatre'
                      },
                     'geometry': {
@@ -185,32 +185,26 @@ jsonObject :any =  JSON.stringify(this.dataDos);
             },
             filter: ['==', '$type', 'Point']
         }, labelLayerId);
-        
-        
 
         map.on('click', 'points', function(e) {
           var coordinates = e.features[0].geometry.coordinates.slice();
           var description = e.features[0].properties.description;
           console.log('punto', description);
-           
           // Ensure that if the map is zoomed out such that multiple
           // copies of the feature are visible, the popup appears
           // over the copy being pointed to.
           while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
           coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
           }
-           
           new mapboxgl.Popup()
               .setLngLat(coordinates)
               .setHTML(description)
               .addTo(map);
           });
-           
           // Change the cursor to a pointer when the mouse is over the places layer.
         map.on('mouseenter', 'points', function() {
             map.getCanvas().style.cursor = 'pointer';
           });
-           
           // Change it back to a pointer when it leaves.
         map.on('mouseleave', 'points', function() {
             map.getCanvas().style.cursor = '';
@@ -219,8 +213,7 @@ jsonObject :any =  JSON.stringify(this.dataDos);
         setInterval(( ) => {
             map.getSource('pointsSource').setData(this.clickoferta());
            // window.location.reload();
-          }, 2000);
-        
+          }, 9000);
 
 
 
